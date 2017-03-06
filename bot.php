@@ -3,7 +3,7 @@ $access_token = 'eYrUwuYVBvWMCWaMOgVVpJ+340T6phdQcs/McASQpkttbwakaPsGBuKDiYA5atI
 
 // Get POST body content
 $content = file_get_contents('php://input');
-$xx = @file_get_contents('https://'.$_SERVER['SERVER_NAME'].'/LINE/' . json_encode($content));
+//$xx = @file_get_contents('https://'.$_SERVER['SERVER_NAME'].'/LINE/' . json_encode($content));
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
 			$returnMessage = $response['msg'];
 			//$returnMessage = 'ddda';
 
-			$returnMessage = $xx;
+			//$returnMessage = $xx;
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
