@@ -15,12 +15,19 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-
+			
 			// Build message to reply back
-			$messages = [
-				'type' => 'text',
-				'text' => $text
-			];
+			if($text == 'address') {
+				$messages = [
+					'type' => 'text',
+					'text' => 'Condo Parkland เพชรเกษม-ท่าพระ ห้อง 1835 ชั้น 18 เลขที่ 99/657 ถนน เพชรเกษม แขวงวัดท่าพระเขตบางกอกใหญ่ กรุงเทพมหานคร 10600';
+				];
+			} else {
+				$messages = [
+					'type' => 'text',
+					'text' => $text
+				];
+			}
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
