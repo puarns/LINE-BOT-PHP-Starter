@@ -16,13 +16,13 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			
-			//$header = array('Content-Type: application/json');
+			$header = array('Content-Type: application/json');
 			$url = 'http://linebot.linetor.com/api.php';
 			$data = array('mid' => '123', 'message' => $text);
 			$content = json_encode($data);
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_URL, $url);
-			//curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
 			curl_setopt($curl, CURLOPT_POST, 1);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
 			//curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
