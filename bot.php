@@ -15,11 +15,28 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
+			
+			$header = array('Content-Type: application/json');
+			$url = 'http://linebot.linetor.com/api.php';
+			$data = array('mid' => '123', 'message' => $text);
+			$content = json_encode($data);
+			$curl = curl_init($url);
+			curl_setopt($curl, CURLOPT_URL, $url);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+			curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+			//curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 20);
+			$result = curl_exec($curl);
+			$response = json_decode($result, true);
+			$returnMessage = $response['msg'];
+			//$returnMessage = 'ddda';
 
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $text
+				'text' => $returnMessage
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
