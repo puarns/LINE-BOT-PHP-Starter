@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 			
 			//$header = array('Content-Type: application/json');
 			$url = 'http://linebot.linetor.com/api.php';
-			$data = array('mid' => '123', 'message' => $text);
+			$data = array('mid' => $mid, 'message' => $text);
 			$content = json_encode($data);
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_URL, $url);
@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($curl);
 			$response = json_decode($result, true);
 			$returnMessage = $response['msg'];
-			$returnMessage = "Your mid = $mid";
+			//$returnMessage = "Your mid = $mid";
 			//$returnMessage = 'ddda';
 
 			//$returnMessage = $xx;
