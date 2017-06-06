@@ -1,4 +1,6 @@
 <?php
+$proxy = 'velodrome.usefixie.com:80';
+$proxyauth = 'fixie:ez2H92ylLIYqlxK';
 $access_token = 'eYrUwuYVBvWMCWaMOgVVpJ+340T6phdQcs/McASQpkttbwakaPsGBuKDiYA5atIRqY559W+yUFkMxeOCtzg4PIf4JFlN+1o7VbSJyj3MwP+SImCrPvSGg59PDz2JTeOx6K+aQvH2Cz3A40CHsbf+hgdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -56,6 +58,10 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			
+			curl_setopt($ch, CURLOPT_PROXY, $proxy);
+			curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+			
 			$result = curl_exec($ch);
 			curl_close($ch);
 
