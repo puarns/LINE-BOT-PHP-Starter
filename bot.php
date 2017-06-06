@@ -8,6 +8,7 @@ $content = file_get_contents('php://input');
 //$xx = @file_get_contents('https://'.$_SERVER['SERVER_NAME'].'/LINE/' . json_encode($content));
 // Parse JSON
 $events = json_decode($content, true);
+$mid = $events['events'][0]['source']['userId'];
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -34,6 +35,7 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($curl);
 			$response = json_decode($result, true);
 			$returnMessage = $response['msg'];
+			$returnMessage = "Your mid = $mid";
 			//$returnMessage = 'ddda';
 
 			//$returnMessage = $xx;
